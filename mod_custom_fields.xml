@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+    <name>Custom Fields Module</name>
+    <author>Luka Oman</author>
+    <version>0.2.0</version>
+    <description>A module that will display content of selected custom fields of the displayed article.</description>
+    
+    <files>
+        <filename>mod_custom_fields.xml</filename>
+        <filename module="mod_custom_fields">mod_custom_fields.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+    </files>
+
+</extension>

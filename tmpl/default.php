@@ -1,0 +1,81 @@
+<?php 
+	// No direct access
+	defined('_JEXEC') or die;
+
+	// circle through whole output of all custom fields
+	foreach( $sendFieldsToHelper as $row ) {
+		// for those fields that have params only for the design of the backend entry fields we left the param array empty
+		if ( $row->type == "text" OR $row->type == "media" OR $row->type == "editor" OR $row->type == "integer" ) {
+			$strFields[] = array(
+				"id" => $row->id,
+				"label" => $row->label,
+				"type" => $row->type,
+				"param" => "",
+				);
+		}
+		// for those fields that store actual values in the params field we extract those values into an array and fill it to the param array
+		else if ( $row->type == "checkboxes" OR $row->type == "radio" ) {
+			$strParam = substr($row->fieldparams, 12);
+			$strParam = substr($strParam, 0, -2);
+
+			$arrOptions = [];
+			$len = 8;
+
+			for ( $i=0; $i<substr_count($strParam, "options"); $i++ ) {
+
+				// get the string 
+				$strOption = substr($strParam, $len, strpos($strParam, "}", $len) -$len);
+				
+				// calculate new starting point as the length of the extracted string + it's position
+				$len = strpos($strParam, "}", $len) + 10;
+				
+				// extract label (name) of the field and numeric representation - value
+				$name = substr($strOption, strpos($strOption, "name") + 7, strpos(strOption, "value") - strpos($strOption, "name") - 8);
+				$value = substr($strOption, strpos($strOption, "value") + 8, -1);
+				
+				$arrOptions[$value] = $name;
+			}
+			
+			$strFields[] = array(
+				"id" => $row->id,
+				"label" => $row->label,
+				"type" => $row->type,
+				"param" => $arrOptions,
+			);
+		}
+		
+	}
+	
+	// for easier representation we isolate only one column - label indexed by id
+	$arrLabels = array_column($strFields, 'label', 'id');
+	// for easier representation we isolate only one column - array of parameters indexed by id
+	$arrValues = array(array_column($strFields, 'param', 'id'));
+	
+	$arrArticleFields = [];
+	
+	// circle through content of in the article defined values
+	foreach ( $sendIdToHelper as $row ) {
+		// replace numerical value with its label
+		$strFieldValue = $arrValues[0][$row->field_id][$row->value];
+		
+		if ( $strFieldValue == "" ) {
+			$strFieldValue = $row->value;
+		}
+	
+		// if there are multiple instances of the same field (aka radio, checkbox), we add the value to the rest of them
+		if ( array_key_exists($arrLabels[$row->field_id], $arrArticleFields) ) {
+			$arrArticleFields[$arrLabels[$row->field_id]] = $arrArticleFields[$arrLabels[$row->field_id]] . ", " . $strFieldValue;
+		}
+		// if there is only one value of the same field
+		else {
+			$arrArticleFields[$arrLabels[$row->field_id]] = $strFieldValue;
+		}
+	}
+	
+	// display the fields in the module
+	echo "<div style='border 1px solid black'>";
+	
+	print_r($arrArticleFields);
+	echo "</div>";
+	
+?>

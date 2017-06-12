@@ -1,0 +1,30 @@
+<?php
+/**
+ * Custom Fields Module Entry Point
+ * 
+ * @package    Module Custom Fields
+ * @subpackage Module
+ * @license    GNU/GPL, see LICENSE.php
+ * @link       https://github.com/bubi-luka/mod-custom-fields
+ * Module Custom Fields (mod_custom_fields) is free software. This 
+ * version may have been modified pursuant to the GNU General 
+ * Public License, and as distributed it includes or is derivative 
+ * of works licensed under the GNU General Public License or other 
+ * free or open source software licenses.
+ */
+ 
+// No direct access
+defined('_JEXEC') or die;
+// Include the syndicate functions only once
+require_once dirname(__FILE__) . '/helper.php';
+
+// Get the article ID
+$input = JFactory::getApplication()->input;
+$articleId = $input->getInt('id');
+
+// Send the id to helper for processing
+$sendIdToHelper = modCustomFieldsHelper::getId($articleId);
+$sendFieldsToHelper = modCustomFieldsHelper::getFields();
+
+require JModuleHelper::getLayoutPath('mod_custom_fields');
+
