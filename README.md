@@ -16,9 +16,6 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 **Warning: _If there is no field with the given id, the shortcode will be displayed unchanged!_**
 
 ## Roadmap
-### 0.4.*
-- module displays the list of available custom fields in the backend
-
 ### 0.5.*
 - module has a backend modal field,
 - this modal field has the content of all the custom fields,
@@ -36,6 +33,9 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 - final release, nothing new
 ---
 ## Change Log
+### 0.4.*
+- module displays the list of available custom fields in the backend
+
 ### 0.3.*
 - module has a backend editor field, where users can enter the code to display in the frontend,
 - module can find the shortcode for the fields,

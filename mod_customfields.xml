@@ -6,7 +6,7 @@
 	method="upgrade">
 	
 	<name>Custom Fields Module</name>
-	<version>0.3.0</version>
+	<version>0.4.0</version>
 	<creationDate>June 2017</creationDate>
 	<description>A module that will display content of selected custom fields of the displayed article.</description>
 	
@@ -37,6 +37,7 @@
 	<config>
 		<fields name="params" addfieldpath="/modules/mod_customfields/fields">
 			<fieldset name="basic">
+			
 				<!-- Text editor that contains text for module -->
 				<field
 					name="editorFields"
@@ -46,8 +47,7 @@
 					width="300"
 					filter="safehtml" />
 					
-				<!-- Modal form field with custom fields and display config -->
-<!-- TESTING -->
+				<!-- Message field in the backend for constructing the shortcode -->
 				<field
 					name="labelInstructions"
 					type="cfmessage"
@@ -55,6 +55,8 @@
 					path="../modules/mod_customfields/"
 					xml="mod_customfields.xml"
 					extension_name="mod_customfields" />
+				
+				<!-- Message field in the backend that display all the custom fields -->
 				<field
 					name="listFields"
 					type="cfmessage"
@@ -62,7 +64,7 @@
 					path="../modules/mod_customfields/"
 					xml="mod_customfields.xml"
 					extension_name="mod_customfields" />
-<!-- END TESTING -->
+
 			</fieldset>
 		</fields>
 	</config>
