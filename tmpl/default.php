@@ -72,10 +72,31 @@
 		}
 	}
 	
-	// display the fields in the module
-	echo "<div style='border 1px solid black'>";
+	// display the content of the editor in the module
+	$strContent = $sendParamsToHelper;
+	$strNewContent = $strContent;
+	$len = 0;
 	
-	print_r($arrArticleFields);
-	echo "</div>";
+	for ( $i=0; $i < substr_count($strContent, "{field "); $i++ ) {
+		// Get field ID from the shortcodes
+		$fieldId = substr($strContent, strpos($strContent, "{field ", $len) + 7, strpos($strContent, "}", $len) - strpos($strContent, "{field ", $len) - 7);
+		
+		// Get custom field label and values for this shortcode
+		$strFieldValue = $arrArticleFields[$arrLabels[$fieldId]];
+		$strFieldName = $arrLabels[$fieldId];
+		
+		// Check if field actually exists
+		if ( array_key_exists($fieldId, $arrLabels) ) {
+			// replace shortcode with field value
+			$strNewContent = str_replace("{field " . $fieldId . "}", $strFieldValue . " ", $strNewContent);
+		}
+		
+		// Let's move to the next field
+		$len = strpos($strContent, "}", $len) + 1;
+		
+	}
+	
+	// Display content without shortcodes
+	echo $strNewContent;
 	
 ?>

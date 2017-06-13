@@ -22,9 +22,15 @@ require_once dirname(__FILE__) . '/helper.php';
 $input = JFactory::getApplication()->input;
 $articleId = $input->getInt('id');
 
-// Send the id to helper for processing
+// Send the id to helper for processing article related custom fields
 $sendIdToHelper = modCustomFieldsHelper::getId($articleId);
+
+// Get all the custom fields on the page
 $sendFieldsToHelper = modCustomFieldsHelper::getFields();
+
+// Use input from settings to display and design the selected fields on the module
+$getFieldsParams = $params->get('editorFields');
+$sendParamsToHelper = modCustomFieldsHelper::getParams($getFieldsParams);
 
 require JModuleHelper::getLayoutPath('mod_custom_fields');
 

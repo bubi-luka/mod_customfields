@@ -55,6 +55,13 @@ class ModCustomFieldsHelper {
 		// Paste results to the tmpl
 		return $result;
 	}
+	
+	// Use input from settings to display and design the selected fields on the module
+	public static function getParams($getFieldsParams) {
+	
+		$result = $getFieldsParams;
+		return $result;
+	}
 
 }
 
