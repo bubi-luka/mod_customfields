@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension 
+	type="module"
+	version="3.1.0"
+	client="site"
+	method="upgrade">
+	
+	<name>Custom Fields Module</name>
+	<version>0.3.0</version>
+	<creationDate>June 2017</creationDate>
+	<description>A module that will display content of selected custom fields of the displayed article.</description>
+	
+	<author>Luka Oman</author>
+	<authorEmail>luka@bubi.si</authorEmail>
+	<authorUrl>http://www.bubi.si</authorUrl>
+	
+	<!-- Files, that are in use by the module -->	
+	<files>
+		<filename>mod_customfields.xml</filename>
+		<filename module="mod_customfields">mod_customfields.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<filename>tmpl/default.php</filename>
+		<filename>tmpl/index.html</filename>
+		<filename>fields/cfmessage.php</filename>
+		<filename>fields/index.html</filename>
+		<filename>LICENSE</filename>
+		<filename>README.md</filename>
+	</files>
+
+	<!-- Update script -->
+<!--	<updateservers>
+		<server type="extension" priority="1" name="mod_jbcookies">http://www.joomball.com/images/updates/jbcookies.xml</server>
+	</updateservers> -->
+
+	<!-- Configuration files, form fields, back end -->
+	<config>
+		<fields name="params" addfieldpath="/modules/mod_customfields/fields">
+			<fieldset name="basic">
+				<!-- Text editor that contains text for module -->
+				<field
+					name="editorFields"
+					type="editor"
+					label="Insert text and shortcode"
+					description="Shortcode is created with text {field ID}, where the ID is the number of the custom field."
+					width="300"
+					filter="safehtml" />
+					
+				<!-- Modal form field with custom fields and display config -->
+<!-- TESTING -->
+				<field
+					name="labelInstructions"
+					type="cfmessage"
+					message="instructions"
+					path="../modules/mod_customfields/"
+					xml="mod_customfields.xml"
+					extension_name="mod_customfields" />
+				<field
+					name="listFields"
+					type="cfmessage"
+					message="fieldlist"
+					path="../modules/mod_customfields/"
+					xml="mod_customfields.xml"
+					extension_name="mod_customfields" />
+<!-- END TESTING -->
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>

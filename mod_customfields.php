@@ -32,5 +32,5 @@ $sendFieldsToHelper = modCustomFieldsHelper::getFields();
 $getFieldsParams = $params->get('editorFields');
 $sendParamsToHelper = modCustomFieldsHelper::getParams($getFieldsParams);
 
-require JModuleHelper::getLayoutPath('mod_custom_fields');
+require JModuleHelper::getLayoutPath('mod_customfields');
 
