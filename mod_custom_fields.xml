@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="module" version="3.1.0" client="site" method="upgrade">
-    <name>Custom Fields Module</name>
-    <author>Luka Oman</author>
-    <version>0.3.0</version>
-    <description>A module that will display content of selected custom fields of the displayed article.</description>
-    
-    <files>
-        <filename>mod_custom_fields.xml</filename>
-        <filename module="mod_custom_fields">mod_custom_fields.php</filename>
-        <filename>index.html</filename>
-        <filename>helper.php</filename>
-        <filename>tmpl/default.php</filename>
-        <filename>tmpl/index.html</filename>
-    </files>
+	<name>Custom Fields Module</name>
+	<author>Luka Oman</author>
+	<version>0.3.0</version>
+	<description>A module that will display content of selected custom fields of the displayed article.</description>
 
-    <config>
-    	<fields name="params">
+	<files>
+		<filename>mod_custom_fields.xml</filename>
+		<filename module="mod_custom_fields">mod_custom_fields.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<filename>tmpl/default.php</filename>
+		<filename>tmpl/index.html</filename>
+	</files>
+
+	<config>
+		<fields name="params">
 			<fieldset name="basic">
 				<field
 					name="editorFields"
 					type="editor"
-					label="Insert and edit custom fields"
-					description="Click on the button and select the desired custom field to be inserted in the editor and in the module."
+					label="Insert text and shortcode"
+					description="Shortcode is created with text {field ID}, where the ID is the number of the custom field."
 					width="300"
 					filter="safehtml" />
 			</fieldset>
 		</fields>
-    </config>
-	
+	</config>
+
 </extension>

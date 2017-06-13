@@ -50,6 +50,8 @@
 	$arrLabels = array_column($strFields, 'label', 'id');
 	// for easier representation we isolate only one column - array of parameters indexed by id
 	$arrValues = array(array_column($strFields, 'param', 'id'));
+	// for easier representation we isolate only one column - type indexed by id
+	$arrTypes = array_column($strFields, 'type', 'id');
 	
 	$arrArticleFields = [];
 	
@@ -84,6 +86,11 @@
 		// Get custom field label and values for this shortcode
 		$strFieldValue = $arrArticleFields[$arrLabels[$fieldId]];
 		$strFieldName = $arrLabels[$fieldId];
+		
+		// Check if field type is media - insert HTML image code
+		if ( $arrTypes[$fieldId] == "media" ) {
+			$strFieldValue = "<img src='/" . $strFieldValue . "' alt='" . $strFieldName . "' />";
+		}
 		
 		// Check if field actually exists
 		if ( array_key_exists($fieldId, $arrLabels) ) {

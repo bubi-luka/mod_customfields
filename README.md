@@ -9,7 +9,7 @@ Save the archive (zip, tar.gz) of the latest module version to your computer or 
 
 ## Usage
 
-Use the WYSIWYG editor to enter the content you would like to be displayed in the module. In place you would like to use the content of the custom field you use the shortcode for the field. The shortcode is '{field ID}'. The ID is the id (number) of the custom field and can be found in the 'Administration Menu -> Content -> 'Fields -> Last column of the fields table'.
+Use the WYSIWYG editor to enter the content you would like to be displayed in the module. In place you would like to use the content of the custom field you use the shortcode for the field. The shortcode is `{field ID}`. The ID is the id (number) of the custom field and can be found in the `Administration Menu -> Content -> Fields -> Last column of the fields table`.
 
 *Example: {field 11}*
 
