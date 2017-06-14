@@ -22,6 +22,11 @@ require_once dirname(__FILE__) . '/helper.php';
 $input = JFactory::getApplication()->input;
 $articleId = $input->getInt('id');
 
+// Die if not on and article
+if ( $input->get('view') != "article" ) {
+	return;
+}
+
 // Send the id to helper for processing article related custom fields
 $sendIdToHelper = modCustomFieldsHelper::getId($articleId);
 
