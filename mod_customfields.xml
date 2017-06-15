@@ -22,6 +22,7 @@
 		<filename>helper.php</filename>
 		<filename>tmpl/default.php</filename>
 		<filename>tmpl/index.html</filename>
+		<filename>fields/cfbutton.php</filename>
 		<filename>fields/cfmessage.php</filename>
 		<filename>fields/index.html</filename>
 		<filename>LICENSE</filename>
@@ -37,6 +38,25 @@
 	<config>
 		<fields name="params" addfieldpath="/modules/mod_customfields/fields">
 			<fieldset name="basic">
+					
+				<!-- Message field in the backend for constructing the shortcode -->
+				<field
+					name="labelInstructions"
+					type="cfmessage"
+					message="instructions"
+					label="Instructions"
+					path="../modules/mod_customfields/"
+					xml="mod_customfields.xml"
+					extension_name="mod_customfields" />
+
+				<!-- Field with commands to insert value into editor -->
+				<field
+					name="button"
+					type="cfbutton"
+					label="Insert shortcode with a click"
+					path="../modules/mod_customfields/"
+					xml="mod_customfields.xml"
+					extension_name="mod_customfields" />
 			
 				<!-- Text editor that contains text for module -->
 				<field
@@ -46,25 +66,17 @@
 					description="Shortcode is created with text {field ID}, where the ID is the number of the custom field."
 					width="300"
 					filter="safehtml" />
-					
-				<!-- Message field in the backend for constructing the shortcode -->
-				<field
-					name="labelInstructions"
-					type="cfmessage"
-					message="instructions"
-					path="../modules/mod_customfields/"
-					xml="mod_customfields.xml"
-					extension_name="mod_customfields" />
 				
 				<!-- Message field in the backend that display all the custom fields -->
 				<field
 					name="listFields"
 					type="cfmessage"
+					label="All of all shortcodes"
 					message="fieldlist"
 					path="../modules/mod_customfields/"
 					xml="mod_customfields.xml"
 					extension_name="mod_customfields" />
-
+				
 			</fieldset>
 		</fields>
 	</config>

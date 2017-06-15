@@ -23,9 +23,9 @@ class JFormFieldCfbutton extends JFormField {
 		$html[] = '<thead>';
 		$html[] = '<tr>';
 		$html[] = '<th width="10%" class="nowrap center">Field ID</th>';
-		$html[] = '<th class="title">Ime polja</th>';
-		$html[] = '<th width="20%" class="nowrap hidden-phone">Skupina</th>';
-		$html[] = '<th width="10%" class="nowrap hidden-phone">Tip</th>';
+		$html[] = '<th class="title">Field Name</th>';
+		$html[] = '<th width="20%" class="nowrap hidden-phone">Field Group</th>';
+		$html[] = '<th width="10%" class="nowrap hidden-phone">Field Type</th>';
 		$html[] = '</tr>';
 		$html[] = '</thead>';
 
@@ -48,7 +48,7 @@ class JFormFieldCfbutton extends JFormField {
 			$html[] = '<tr>';
 			$html[] = '<td class="center">' . $row->id . '</td>';
 			$html[] = '<td class="has-context"><a class="btn btn-small btn-block btn-success" href="javascript:void(0);" onclick="insertShortcode(' . $row->id . ');">' . $row->label . '</a></td>';
-			$html[] = '<td class="small hidden-phone"><span class="btn btn-small btn-block btn-warning" href="javascript:void(0);">Test</span></td>';
+			$html[] = '<td class="small hidden-phone"><span class="btn btn-small btn-block btn-warning" href="javascript:void(0);"></span></td>';
 			$html[] = '<td class="small hidden-phone">'  . $row->type . '</td>';
 			$html[] = '</tr>';				
 					
@@ -57,11 +57,8 @@ class JFormFieldCfbutton extends JFormField {
 		
 		$html[] = '</table>';
 		$html[] = '</div>';
-		echo implode('', $html);
-		return;
+		return implode('', $html);
 
 	}
-	
-	protected function getLabel() {}
 	
 }

@@ -24,7 +24,7 @@ class ModCustomFieldsHelper {
 				    ->select($db->quoteName(array('field_id','value')))
 				    ->from($db->quoteName('#__fields_values'))
 				    ->where('item_id = '. $db->Quote($articleId));
-				    
+		
 		// Prepare the query
 		$db->setQuery($query);
 		
@@ -45,7 +45,7 @@ class ModCustomFieldsHelper {
 				    ->select($db->quoteName(array('id', 'label', 'type', 'fieldparams')))
 				    ->from($db->quoteName('#__fields'))
 				    ->where('state = 1');
-				    
+		
 		// Prepare the query
 		$db->setQuery($query);
 		

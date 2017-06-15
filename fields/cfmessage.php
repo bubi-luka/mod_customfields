@@ -21,13 +21,21 @@ class JFormFieldCfmessage extends JFormField {
 				$html[] = '<p>The shortcode is constructed as "{field ID}. The ID is the number, id of the custom field that we want to show.</p>';
 				$html[] = '<p>You can find the id of teh custom field in the <em>Administration menu</em> => <em>Content</em> => <em>Fields</em> => <em>Last column in the table</em>.</p>';
 				$html[] = '</div>';
-				echo implode('', $html);
-				return;
+				return implode('', $html);;
     			break;
     		case 'fieldlist':
     			$html = array();
        			$html[] = '<div class="alert alert-success">';
+       			$html[] = '<p>Underneath is a list of all the shortcodes with coresponding custom field names and types.</p>';
        			$html[] = '<table>';
+				$html[] = '<thead>';
+				$html[] = '<tr>';
+				$html[] = '<th width="20%" class="nowrap center">Field ID</th>';
+				$html[] = '<th class="title">Field Name</th>';
+				$html[] = '<th width="30%" class="nowrap hidden-phone">Field Group</th>';
+				$html[] = '<th width="20%" class="nowrap hidden-phone">Field Type</th>';
+				$html[] = '</tr>';
+				$html[] = '</thead>';
        			
        			// Obtain a database connection
 				$db = JFactory::getDbo();
@@ -45,13 +53,18 @@ class JFormFieldCfmessage extends JFormField {
 				$result = $db->loadObjectList();
 				
 				foreach( $result as $row ) {
-					$html[] = '<tr><td>{field ' . $row->id . '}</td><td>' . $row->label . '</td><td>' . $row->type . '</td></tr>';
+					$html[] = '<tr>';
+					$html[] = '<td>{field ' . $row->id . '}</td>';
+					$html[] = '<td>' . $row->label . '</td>';
+					$html[] = '<td></td>';
+					$html[] = '<td>' . $row->type . '</td>';
+					$html[] = '</tr>';
 				}
 				
        			$html[] = '</table>';
 				$html[] = '</div>';
-				echo implode('', $html);
-				return;
+				
+				return implode('', $html);
     			break;
     		default:
     			$style = 'border: 1px solid #BBBBBB; background-color: #F1F1F1; ';
@@ -71,7 +84,5 @@ class JFormFieldCfmessage extends JFormField {
 		
 		return implode('', $html);
 	}
-	
-	protected function getLabel() {}
 	
 }
