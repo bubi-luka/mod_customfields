@@ -15,25 +15,11 @@
 		}
 		// for those fields that store actual values in the params field we extract those values into an array and fill it to the param array
 		else if ( $row->type == "checkboxes" OR $row->type == "radio" ) {
-			$strParam = substr($row->fieldparams, 12);
-			$strParam = substr($strParam, 0, -2);
-
+			$strParam = json_decode($row->fieldparams);
+			
 			$arrOptions = [];
-			$len = 8;
-
-			for ( $i=0; $i<substr_count($strParam, "options"); $i++ ) {
-
-				// get the string 
-				$strOption = substr($strParam, $len, strpos($strParam, "}", $len) -$len);
-				
-				// calculate new starting point as the length of the extracted string + it's position
-				$len = strpos($strParam, "}", $len) + 10;
-				
-				// extract label (name) of the field and numeric representation - value
-				$name = substr($strOption, strpos($strOption, "name") + 7, strpos(strOption, "value") - strpos($strOption, "name") - 8);
-				$value = substr($strOption, strpos($strOption, "value") + 8, -1);
-				
-				$arrOptions[$value] = $name;
+			foreach ( $strParam->options as $key => $value ) {
+				$arrOptions[$value->value] = $value->name;
 			}
 			
 			$strFields[] = array(
