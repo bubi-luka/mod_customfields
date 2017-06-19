@@ -16,11 +16,6 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 **Warning: _If there is no field with the given id, the shortcode will be displayed unchanged!_**
 
 ## Roadmap
-### 0.5.*
-- module has a backend modal field,
-- this modal field has the content of all the custom fields,
-- user can with a click on a button select desired custom field and put the shortcode in the editor field.
-
 ### 0.6.*
 - modal field has the option to use both the label and the data for custom fields,
 - editor field has modified shortcode to contain option to display the label or not,
@@ -33,10 +28,15 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 - final release, nothing new
 ---
 ## Change Log
-### 0.4.*
+### 0.5.0
+- module has a backend modal field,
+- this modal field has the content of all the custom fields,
+- user can with a click on a button select desired custom field and put the shortcode in the editor field,
+- fields can display all the characters properly.
+### 0.4.0
 - module displays the list of available custom fields in the backend
 
-### 0.3.*
+### 0.3.0
 - module has a backend editor field, where users can enter the code to display in the frontend,
 - module can find the shortcode for the fields,
 - module can parse the shortcode for the fields,
