@@ -19,7 +19,7 @@ class JFormFieldCfbutton extends JFormField {
 		
 		$params = array();
 		$params['title']  = "Add a shortcode of the desired custom field";
-		$params['height'] = "400px";
+		$params['height'] = "400";
 		$params['width'] = "70%";
     
 		$windowCode = array();
