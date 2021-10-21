@@ -20,15 +20,18 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Helper\ModuleHelper;
 
 require ModuleHelper::getLayoutPath('mod_customfields', $params->get('layout', 'default'));
+//require JModuleHelper::getLayoutPath('mod_customfields', $params->get('layout', 'default'));
 
 // Get the article ID
 $input = JFactory::getApplication()->input;
 $articleId = $input->getInt('id');
 
+// New stuff
 // Get the article author ID
 $article =& JTable::getInstance('content');
 $article->load($articleId);
 $authorId = $article->created_by;
+// New stuff
 
 // Die if not on and article
 if ( $input->get('view') != "article" ) {
@@ -37,7 +40,9 @@ if ( $input->get('view') != "article" ) {
 
 // Send the id to helper for processing article related custom fields
 $sendIdToHelper = modCustomFieldsHelper::getArticleId($articleId);
+// New stuff
 $sendAuthorToHelper = modCustomFieldsHelper::getAuthorId($authorId);
+// New stuff
 
 // Get all the custom fields on the page
 $sendFieldsToHelper = modCustomFieldsHelper::getFields();

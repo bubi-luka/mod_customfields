@@ -5,7 +5,7 @@
 	// circle through whole output of all custom fields
 	foreach( $sendFieldsToHelper as $row ) {
 		// custom field is about the article content
-		if ( $row->context == "com_content.article" ) {
+//		if ( $row->context == "com_content.article" ) {
 			// for those fields that have params only for the design of the backend entry fields we left the param array empty
 			if ( $row->type == "text" OR $row->type == "media" OR $row->type == "editor" OR $row->type == "integer" ) {
 				$strFields[] = array(
@@ -31,12 +31,12 @@
 					"param" => $arrOptions,
 				);
 			}
-		}
-		// custom field is about the article author
-		else if ( $row->context == "com_users.user" ) {
-			echo "<p>Uporabnik</p>";
-			$strFields[] = array();
-		}
+//		}
+//		// custom field is about the article author
+//		else if ( $row->context == "com_users.user" ) {
+//			echo "<p>Uporabnik</p>";
+//			$strFields[] = array();
+//		}
 	}
 	
 	// for easier representation we isolate only one column - label indexed by id

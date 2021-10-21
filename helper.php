@@ -35,27 +35,26 @@ class ModCustomFieldsHelper {
 		return $result;
 	}
 	
-/*	// Get values from custom fields for author
+	// Get values from custom fields for author
 	public static function getAuthorId($authorId) {
-		// Obtain a database connection
-		$db = JFactory::getDbo();
-		
-		// Get the values for all the custom fields for this article
-		$query = $db->getQuery(true)
-				    ->select($db->quoteName(array('field_id','value')))
-				    ->from($db->quoteName('#__fields_values'))
-				    ->where('item_id = '. $db->Quote($authorId));
-		
-		// Prepare the query
-		$db->setQuery($query);
-		
-		// Load results
-		$result = $db->loadObjectList();
-    	
-		// Paste results to the tmpl
-		return $result;
+//		// Obtain a database connection
+//		$db = JFactory::getDbo();
+//		
+//		// Get the values for all the custom fields for this article
+//		$query = $db->getQuery(true)
+//				    ->select($db->quoteName(array('field_id','value')))
+//				    ->from($db->quoteName('#__fields_values'))
+//				    ->where('item_id = '. $db->Quote($authorId));
+//		
+//		// Prepare the query
+//		$db->setQuery($query);
+//		
+//		// Load results
+//		$result = $db->loadObjectList();
+//  	
+//		// Paste results to the tmpl
+//		return $result;
 	}
-*/
 
 	// Get values from custom fields for articles and users
 	public static function getFields() {
