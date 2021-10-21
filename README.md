@@ -28,6 +28,9 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 - final release, nothing new
 ---
 ## Change Log
+### 0.5.5
+- fix: when an article does not contain content for the requested field the script does no longer try to parse that field, fail and output error in nginx
+- erase joomla extension version parameter from mod_customfields.xml meta (comp. with Joomla!4)
 ### 0.5.0
 - module has a backend modal field,
 - this modal field has the content of all the custom fields,
