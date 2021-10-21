@@ -9,6 +9,7 @@
 	<version>0.6.0-dev</version>
 	<creationDate>October 2021</creationDate>
 	<description>A module that will display content of selected custom fields of the displayed article.</description>
+	<namespace>Joomla\Module\CustomFields</namespace>
 	
 	<author>Luka Oman</author>
 	<authorEmail>luka@bubi.si</authorEmail>
@@ -22,10 +23,10 @@
 		<filename>mod_customfields.xml</filename>
 		<filename module="mod_customfields">mod_customfields.php</filename>
 		<filename>index.html</filename>
-		<filename>helper.php</filename>
 		
 		<folder>tmpl</folder>
 		<folder>fields</folder>
+		<folder>Helper</folder>
 		<folder>language</folder>
 		
 		<filename>LICENSE.txt</filename>

@@ -17,21 +17,17 @@
 defined('_JEXEC') or die;
 
 // Include the syndicate functions only once
+use Joomla\Module\CustomFields\Site\Helper\CustomFieldsHelper;
 use Joomla\CMS\Helper\ModuleHelper;
-
-require ModuleHelper::getLayoutPath('mod_customfields', $params->get('layout', 'default'));
-//require JModuleHelper::getLayoutPath('mod_customfields', $params->get('layout', 'default'));
 
 // Get the article ID
 $input = JFactory::getApplication()->input;
 $articleId = $input->getInt('id');
 
-// New stuff
 // Get the article author ID
 $article =& JTable::getInstance('content');
 $article->load($articleId);
 $authorId = $article->created_by;
-// New stuff
 
 // Die if not on and article
 if ( $input->get('view') != "article" ) {
@@ -39,15 +35,14 @@ if ( $input->get('view') != "article" ) {
 }
 
 // Send the id to helper for processing article related custom fields
-$sendIdToHelper = modCustomFieldsHelper::getArticleId($articleId);
-// New stuff
-$sendAuthorToHelper = modCustomFieldsHelper::getAuthorId($authorId);
-// New stuff
+$sendIdToHelper = CustomFieldsHelper::getArticleId($articleId);
+$sendAuthorToHelper = CustomFieldsHelper::getAuthorId($authorId);
 
 // Get all the custom fields on the page
-$sendFieldsToHelper = modCustomFieldsHelper::getFields();
+$sendFieldsToHelper = CustomFieldsHelper::getFields();
 
 // Use input from settings to display and design the selected fields on the module
 $getFieldsParams = $params->get('editorFields');
-$sendParamsToHelper = modCustomFieldsHelper::getParams($getFieldsParams);
+$sendParamsToHelper = CustomFieldsHelper::getParams($getFieldsParams);
 
+require ModuleHelper::getLayoutPath('mod_customfields', $params->get('layout', 'default'));
