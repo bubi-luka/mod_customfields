@@ -14,8 +14,8 @@
  */
 	
 class ModCustomFieldsHelper {
-	// Get values from custom fields for the article
-	public static function getId($articleId) {
+	// Get values from custom fields for articles
+	public static function getArticleId($articleId) {
 		// Obtain a database connection
 		$db = JFactory::getDbo();
 		
@@ -35,14 +35,36 @@ class ModCustomFieldsHelper {
 		return $result;
 	}
 	
-	// Get values from custom fields for the article
+/*	// Get values from custom fields for author
+	public static function getAuthorId($authorId) {
+		// Obtain a database connection
+		$db = JFactory::getDbo();
+		
+		// Get the values for all the custom fields for this article
+		$query = $db->getQuery(true)
+				    ->select($db->quoteName(array('field_id','value')))
+				    ->from($db->quoteName('#__fields_values'))
+				    ->where('item_id = '. $db->Quote($authorId));
+		
+		// Prepare the query
+		$db->setQuery($query);
+		
+		// Load results
+		$result = $db->loadObjectList();
+    	
+		// Paste results to the tmpl
+		return $result;
+	}
+*/
+
+	// Get values from custom fields for articles and users
 	public static function getFields() {
 		// Obtain a database connection
 		$db = JFactory::getDbo();
 		
 		// Get the data for all active custom fields
 		$query = $db->getQuery(true)
-				    ->select($db->quoteName(array('id', 'label', 'type', 'fieldparams')))
+				    ->select($db->quoteName(array('id', 'context', 'label', 'type', 'fieldparams')))
 				    ->from($db->quoteName('#__fields'))
 				    ->where('state = 1');
 		
