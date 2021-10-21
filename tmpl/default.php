@@ -44,19 +44,22 @@
 	// circle through content of in the article defined values
 	foreach ( $sendIdToHelper as $row ) {
 		// replace numerical value with its label
-		$strFieldValue = $arrValues[0][$row->field_id][$row->value];
-		
-		if ( $strFieldValue == "" ) {
+		if ( !empty($arrValues[0][$row->field_id][$row->value]) ) {
+			$strFieldValue = $arrValues[0][$row->field_id][$row->value];
+		}
+		else {
 			$strFieldValue = $row->value;
 		}
 	
 		// if there are multiple instances of the same field (aka radio, checkbox), we add the value to the rest of them
-		if ( array_key_exists($arrLabels[$row->field_id], $arrArticleFields) ) {
-			$arrArticleFields[$arrLabels[$row->field_id]] = $arrArticleFields[$arrLabels[$row->field_id]] . ", " . $strFieldValue;
-		}
-		// if there is only one value of the same field
-		else {
-			$arrArticleFields[$arrLabels[$row->field_id]] = $strFieldValue;
+		if ( !empty($arrLabels[$row->field_id]) ) {
+			if ( array_key_exists($arrLabels[$row->field_id], $arrArticleFields) ) {
+				$arrArticleFields[$arrLabels[$row->field_id]] = $arrArticleFields[$arrLabels[$row->field_id]] . ", " . $strFieldValue;
+			}
+			// if there is only one value of the same field
+			else {
+				$arrArticleFields[$arrLabels[$row->field_id]] = $strFieldValue;
+			}
 		}
 	}
 	
