@@ -13,6 +13,7 @@
 					"label" => $row->label,
 					"type" => $row->type,
 					"param" => "",
+					"context" => "article",
 					);
 			}
 			// for those fields that store actual values in the params field we extract those values into an array and fill it to the param array
@@ -29,13 +30,19 @@
 					"label" => $row->label,
 					"type" => $row->type,
 					"param" => $arrOptions,
+					"context" => "article",
 				);
 			}
 		}
 		// custom field is about the article author
 		else if ( $row->context == "com_users.user" ) {
-			echo "<p>Uporabnik</p>";
-			$strFields[] = array();
+			$strFields[] = array(
+				"id" => $row->id,
+				"label" => $row->label,
+				"type" => $row->type,
+				"param" => "",
+				"context" => "user",
+				);
 		}
 	}
 	
@@ -47,7 +54,7 @@
 	$arrTypes = array_column($strFields, 'type', 'id');
 	
 	$arrArticleFields = [];
-	   	
+	
 	// circle through content of in the article defined values
 	foreach ( $sendIdToHelper as $row ) {
 		// replace numerical value with its label
@@ -70,6 +77,28 @@
 		}
 	}
 	
+	// circle through content of the article author custom fields
+	foreach ( $sendAuthorToHelper as $row ) {
+		// replace numerical value with its label
+		if ( !empty($arrValues[0][$row->field_id][$row->value]) ) {
+			$strFieldValue = $arrValues[0][$row->field_id][$row->value];
+		}
+		else {
+			$strFieldValue = $row->value;
+		}
+	
+		// if there are multiple instances of the same field (aka radio, checkbox), we add the value to the rest of them
+		if ( !empty($arrLabels[$row->field_id]) ) {
+			if ( array_key_exists($arrLabels[$row->field_id], $arrArticleFields) ) {
+				$arrArticleFields[$arrLabels[$row->field_id]] = $arrArticleFields[$arrLabels[$row->field_id]] . ", " . $strFieldValue;
+			}
+			// if there is only one value of the same field
+			else {
+				$arrArticleFields[$arrLabels[$row->field_id]] = $strFieldValue;
+			}
+		}
+	}
+
 	// display the content of the editor in the module
 	$strContent = $sendParamsToHelper;
 	$strNewContent = $strContent;
