@@ -19,7 +19,7 @@ jobs:
   # This workflow contains a single job called "build" with multiple steps
   build:
     # Only activate build on event in master branch
-#    if: github.event.base_ref == 'refs/heads/master'
+    if: github.event.base_ref == 'refs/heads/master'
     
     name: Create new release
     # The type of runner that the job will run on
