@@ -27,4 +27,4 @@ jobs:
         with:
           project: Triage
           column: Needs triage
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
