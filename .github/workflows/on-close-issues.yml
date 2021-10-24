@@ -1,0 +1,31 @@
+# On closed issue we label it as Closed and Done. It goes to the Project Triage column Done.
+
+name: Label new or reopened issues with label New
+
+# Controls when the workflow will run
+on:
+  # Trigger workflow on events with issues
+  issues:
+    # Define what type of issue events trigger the workflow
+    types:
+      - deleted
+      - closed
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # First job is dealing with labeling the issue in question 
+  label_issues:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Label issues
+        uses: andymckay/labeler@1.0.4
+        with:
+          add-labels: 'Done, Closed'
+          remove-labels: 'New, Needs Triage'
+      - uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Triage
+          column: Closed
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
