@@ -17,13 +17,13 @@ jobs:
   label_issues:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # Set up the permissions
-#    permissions:
-#      issues: write
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Label issues
         uses: andymckay/labeler@1.0.4
         with:
           add-labels: 'New, Needs Triage'
-#          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Triage
+          column: Needs triage
