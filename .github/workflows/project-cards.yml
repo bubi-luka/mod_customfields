@@ -11,33 +11,36 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  relabel_issues:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: andymckay/labeler@1.0.4
       - name: Moved to Needs Triage
         if: github.event.project_card.column_id == '16558806'
+        uses: andymckay/labeler@1.0.4
         with:
           add-labels: 'New, Needs Triage'
           remove-labels: 'High Priority, Low Priority, Closed, Done'
       
       - name: Moved to High Priority
         if: github.event.project_card.column_id == '16558807'
+        uses: andymckay/labeler@1.0.4
         with:
           add-labels: 'High Priority'
           remove-labels: 'New, Needs Triage, Low Priority, Closed, Done'
           
       - name: Moved to Low Priority
         if: github.event.project_card.column_id == '16558808'
+        uses: andymckay/labeler@1.0.4
         with:
           add-labels: 'Low Priority'
           remove-labels: 'New, Needs Triage, High Priority, Closed, Done'
       
       - name: Moved to Done
         if: github.event.project_card.column_id == '16558809'
+        uses: andymckay/labeler@1.0.4
         with:
           add-labels: 'Done, Closed'
           remove-labels: 'New, Needs Triage, High Priority, Low Priority'
