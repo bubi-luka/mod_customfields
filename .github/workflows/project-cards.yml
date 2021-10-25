@@ -21,7 +21,7 @@ jobs:
         if: github.event.project_card.column_id == '16558806'
         uses: andymckay/labeler@1.0.4
         with:
-          add-labels: 'New, Needs Triage'
+          add-labels: 'Needs Triage'
           remove-labels: 'High Priority, Low Priority, Closed, Done'
       
       - name: Moved to High Priority
@@ -29,14 +29,14 @@ jobs:
         uses: andymckay/labeler@1.0.4
         with:
           add-labels: 'High Priority'
-          remove-labels: 'New, Needs Triage, Low Priority, Closed, Done'
+          remove-labels: 'Needs Triage, Low Priority, Closed, Done'
           
       - name: Moved to Low Priority
         if: github.event.project_card.column_id == '16558808'
         uses: andymckay/labeler@1.0.4
         with:
           add-labels: 'Low Priority'
-          remove-labels: 'New, Needs Triage, High Priority, Closed, Done'
+          remove-labels: 'Needs Triage, High Priority, Closed, Done'
       
       - name: Moved to Done
         if: github.event.project_card.column_id == '16558809'
