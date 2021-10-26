@@ -5,19 +5,19 @@ name: Create new release
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push events on the master branch when there is new tag
-#  push:
-#    tags:
-#      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  push:
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build" with multiple steps
-  build:
+  createrelease:
     # Only activate build on event in master branch
-#    if: github.event.base_ref == 'refs/heads/master'
+    if: github.event.base_ref == 'refs/heads/master'
     
     name: Create new release
     # The type of runner that the job will run on
@@ -29,21 +29,34 @@ jobs:
         uses: actions/checkout@v2
       
       # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
-      - name: Create archive
-        run: zip -r release.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+      - name: Create a temporary artifact downloads folder
+        run: mkdir zips
         
-#      # Create the new release
-#      - name: Create Release
-#        id: create_release
-#        uses: actions/create-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-#        with:
-#          tag_name: ${{ github.ref }}
-#          release_name: Release ${{ github.ref }}
-#          body: |
-#            Changes in this Release
-#            - First Change
-#            - Second Change
-#          draft: false
+      - name: Create archive
+        run: | 
+          cp -R Helper zips/
+          cp -R fields zips/
+          cp -R language zips/
+          cp -R tmpl zips/
+          cp LICENCE.txt  zips/
+          cp README.md zips/
+          cp index.html  zips/
+          cp mod_customfields.php zips/
+          cp mod_customfields.xml zips/
+          
+      - name: Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with:
+          name: mod_customfields-${{ github.ref }}
+          path: zips
+          retention-days: 2
+
+      # Create the new release
+      - name: Create Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          title: "Release ${{ github.ref }}"
+          prerelease: true
 #          prerelease: false
+          files: zips/mod_customfields-${{ github.ref }}.zip
