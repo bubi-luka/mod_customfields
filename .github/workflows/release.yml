@@ -33,8 +33,17 @@ jobs:
         run: mkdir zips
         
       - name: Create archive
-        run: zip -r zips/release.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
-
+        run: | 
+          cp Helper/* zips/Helper/
+          cp fields/* zips/fields/
+          cp language/* zips/language/
+          cp tmpl/* zips/tmpl/
+          cp LICENCE.txt  zips/
+          cp README.md zips/
+          cp index.html  zips/
+          cp mod_customfields.php zips/
+          cp mod_customfields.xml zips/
+          
       - name: Use the Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
         with: 
