@@ -33,10 +33,10 @@
 		<filename>README.md</filename>
 	</files>
 
-	<!-- Update script -->
-<!--	<updateservers>
-		<server type="extension" priority="1" name="mod_jbcookies">http://www.joomball.com/images/updates/jbcookies.xml</server>
-	</updateservers> -->
+	<!-- Updates -->
+	<updateservers>
+		<server type="extension" name="Custom Fields Module" priority="1">https://raw.githubusercontent.com/bubi-luka/mod-custom-fields/master/mod_customfields-updates.xml</server>
+	</updateservers>
 
 	<!-- Configuration files, form fields, back end -->
 	<config>
