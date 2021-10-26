@@ -15,7 +15,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build" with multiple steps
-  build:
+  createrelease:
     # Only activate build on event in master branch
 #    if: github.event.base_ref == 'refs/heads/master'
     
@@ -46,22 +46,17 @@ jobs:
           
       - name: Use the Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
-        with: 
-          name: Downloads
+        with:
+          name: mod_customfields-${{ github.ref }}
           path: zips
+          retention-days: 2
 
-#      # Create the new release
-#      - name: Create Release
-#        id: create_release
-#        uses: actions/create-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-#        with:
-#          tag_name: ${{ github.ref }}
-#          release_name: Release ${{ github.ref }}
-#          body: |
-#            Changes in this Release
-#            - First Change
-#            - Second Change
-#          draft: false
+      # Create the new release
+      - name: Create Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          title: "Release ${{ github.ref }}"
+          prerelease: true
 #          prerelease: false
+          files: zips/mod_customfields-${{ github.ref }}.zip
