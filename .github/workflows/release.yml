@@ -10,7 +10,7 @@ on:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
   # Allows you to run this workflow manually from the Actions tab
-#  workflow_dispatch:
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,6 +28,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
+      # Get the tag name
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+  
       # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
       - name: Create a temporary artifact downloads folder
         run: mkdir zips
@@ -47,7 +52,7 @@ jobs:
       - name: Use the Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
         with:
-          name: mod_customfields-${GITHUB_REF##*/}
+          name: mod_customfields-${{ steps.get_version.outputs.VERSION }}
           path: zips
           retention-days: 2
 
@@ -56,7 +61,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          title: "Release ${GITHUB_REF##*/}"
+          title: "Release ${{ steps.get_version.outputs.VERSION }}"
           prerelease: true
 #          prerelease: false
-          files: zips/mod_customfields-${GITHUB_REF##*/}.zip
+          files: zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip
