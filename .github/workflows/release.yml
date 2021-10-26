@@ -17,7 +17,7 @@ jobs:
   # This workflow contains a single job called "build" with multiple steps
   createrelease:
     # Only activate build on event in master branch
-    if: github.event.base_ref == 'refs/heads/master'
+#    if: github.event.base_ref == 'refs/heads/master'
     
     name: Create new release
     # The type of runner that the job will run on
@@ -38,24 +38,25 @@ jobs:
         run: mkdir zips
         
       - name: Create archive
-        run: | 
-          cp -R Helper zips/
-          cp -R fields zips/
-          cp -R language zips/
-          cp -R tmpl zips/
-          cp LICENCE.txt  zips/
-          cp README.md zips/
-          cp index.html  zips/
-          cp mod_customfields.php zips/
-          cp mod_customfields.xml zips/
-          
-      - name: Use the Upload Artifact GitHub Action
-        uses: actions/upload-artifact@v2
-        with:
-          name: mod_customfields-${{ steps.get_version.outputs.VERSION }}
-          path: zips
-          retention-days: 2
+        run: zip -r zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
 
+#          cp -R Helper zips/
+#          cp -R fields zips/
+#          cp -R language zips/
+#          cp -R tmpl zips/
+#          cp LICENCE.txt  zips/
+#          cp README.md zips/
+#          cp index.html  zips/
+#          cp mod_customfields.php zips/
+#          cp mod_customfields.xml zips/
+#          
+#      - name: Use the Upload Artifact GitHub Action
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: mod_customfields-${{ steps.get_version.outputs.VERSION }}
+#          path: zips
+#          retention-days: 2
+#
       # Create the new release
       - name: Create Release
         uses: "marvinpinto/action-automatic-releases@latest"
