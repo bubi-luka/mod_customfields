@@ -47,7 +47,7 @@ jobs:
       - name: Use the Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
         with:
-          name: mod_customfields-${{ github.ref }}
+          name: mod_customfields-${GITHUB_REF##*/}
           path: zips
           retention-days: 2
 
@@ -56,7 +56,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          title: "Release ${{ github.ref }}"
+          title: "Release ${GITHUB_REF##*/}"
           prerelease: true
 #          prerelease: false
-          files: zips/mod_customfields-${{ github.ref }}.zip
+          files: zips/mod_customfields-${GITHUB_REF##*/}.zip
