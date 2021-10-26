@@ -30,6 +30,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
+      # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
+      - name: Create archive
+        run: zip -r release.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+        
 #      # Create the new release
 #      - name: Create Release
 #        id: create_release
