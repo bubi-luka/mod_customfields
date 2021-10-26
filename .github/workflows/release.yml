@@ -5,19 +5,19 @@ name: Create new release
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push events on the master branch when there is new tag
-#  push:
-#    tags:
-#      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  push:
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build" with multiple steps
   createrelease:
     # Only activate build on event in master branch
-#    if: github.event.base_ref == 'refs/heads/master'
+    if: github.event.base_ref == 'refs/heads/master'
     
     name: Create new release
     # The type of runner that the job will run on
