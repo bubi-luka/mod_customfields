@@ -34,10 +34,10 @@ jobs:
         
       - name: Create archive
         run: | 
-          cp Helper/* zips/Helper/
-          cp fields/* zips/fields/
-          cp language/* zips/language/
-          cp tmpl/* zips/tmpl/
+          cp -R Helper zips/
+          cp -R fields zips/
+          cp -R language zips/
+          cp -R tmpl zips/
           cp LICENCE.txt  zips/
           cp README.md zips/
           cp index.html  zips/
