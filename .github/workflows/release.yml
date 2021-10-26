@@ -29,12 +29,17 @@ jobs:
         uses: actions/checkout@v2
       
       # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
+      - name: Create a temporary artifact downloads folder
+        run: mkdir zips
+        
       - name: Create archive
-        run: zip -r release.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+        run: zip -r zips/release.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
 
-      - name: Release to Github
-        run: echo "Release"
-
+      - name: Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with: 
+          name: Downloads
+          path: zips
 
 #      # Create the new release
 #      - name: Create Release
