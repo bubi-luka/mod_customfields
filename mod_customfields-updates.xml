@@ -1,4 +1,13 @@
 <updates>
+			</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>Luka Oman</maintainer>
+		<maintainerurl>https://luka.bubi.si/</maintainerurl>
+		<targetplatform name="joomla" version="[4].[0123456789]" />
+	</update>
 		<maintainerurl>https://luka.bubi.si/</maintainerurl>
 		<targetplatform name="joomla" version="[4].[0123456789]" />
 	</update>
