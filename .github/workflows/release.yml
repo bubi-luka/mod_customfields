@@ -51,7 +51,7 @@ jobs:
           sed -i 's/<updates>/<updates>\n\t\t<infourl title=\"Custom Field Module\" \/>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<client>0<\/client>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<type>module<\/type>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-          sed -i 's/<updates>/<updates>\n\t\t<element>mod_customfields<\/element>/g' mod_customfields-updates.xml > mod_customfields-updates.xml
+          sed -i 's/<updates>/<updates>\n\t\t<element>mod_customfields<\/element>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<\/description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t\tOpis/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
