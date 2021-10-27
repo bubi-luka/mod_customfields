@@ -37,26 +37,15 @@ jobs:
       - name: Create a temporary artifact downloads folder
         run: mkdir zips
         
-      - name: Create archive
+      - name: Create zip archive
         run: zip -r zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
 
-#          cp -R Helper zips/
-#          cp -R fields zips/
-#          cp -R language zips/
-#          cp -R tmpl zips/
-#          cp LICENCE.txt  zips/
-#          cp README.md zips/
-#          cp index.html  zips/
-#          cp mod_customfields.php zips/
-#          cp mod_customfields.xml zips/
-#          
-#      - name: Use the Upload Artifact GitHub Action
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: mod_customfields-${{ steps.get_version.outputs.VERSION }}
-#          path: zips
-#          retention-days: 2
-#
+			- name: Create tar.gz archive
+				run: tar -czf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.gz Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+				        
+      - name: Create tar.bz2 archive
+        run: tar cjf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.bz2  Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+        
       # Create the new release
       - name: Create Release
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -65,4 +54,7 @@ jobs:
           title: "Release ${{ steps.get_version.outputs.VERSION }}"
           prerelease: true
 #          prerelease: false
-          files: zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip
+          files: | 
+          	zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip
+          	zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.gz
+          	zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.bz2 
