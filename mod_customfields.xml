@@ -6,7 +6,7 @@
 	method="upgrade">
 	
 	<name>Custom Fields Module</name>
-	<version>0.5.8-5</version>
+	<version>0.5.9</version>
 	<creationDate>October 2021</creationDate>
 	<description>A module that will display content of selected custom fields of the displayed article.</description>
 	<namespace>Joomla\Module\CustomFields</namespace>
