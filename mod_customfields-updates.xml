@@ -44,3 +44,4 @@
         <targetplatform name="joomla" version="[4].[0123456789]" />
     </update>
 </updates>
+This is only a test\nA nice little test!
