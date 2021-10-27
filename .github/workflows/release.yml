@@ -51,6 +51,7 @@ jobs:
           sed -i 's/<updates>/<updates>\n\t\t<downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<infourl title=\"Custom Field Module\" \/>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<client>0<\/client>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+          sed -i 's/<updates>/<updates>\n\t\t<version>\${{ steps.get_version.outputs.VERSION }}<\/version>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<type>module<\/type>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<element>mod_customfields<\/element>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<\/description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
@@ -58,8 +59,7 @@ jobs:
           sed -i 's/<updates>/<updates>\n\t\t<description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<name>Custom Field Module<\/name>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t<update>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-#          sed -i 's/<updates>/<updates>\n\t\t<version>${{ steps.get_version.outputs.VERSION }}<\/version>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-
+      
       # Push changes to the update server
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
         run: |
