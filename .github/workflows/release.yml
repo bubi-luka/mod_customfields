@@ -63,10 +63,11 @@ jobs:
       # Push changes to the update server
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
         run: |
+          echo ${GITHUB_REF:11}
           git config --global user.name 'Luka Oman'
           git config --global user.email 'bubi-luka@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout "v${GITHUB_REF:11}"
+          git checkout "${GITHUB_REF:11}"
           git commit -am 'Automated commit to update server for release ${{ steps.get_version.outputs.VERSION }}'
           git push
 
