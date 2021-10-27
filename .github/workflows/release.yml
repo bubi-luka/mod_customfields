@@ -35,7 +35,7 @@ jobs:
       # Create new update version of the update server
       - name: Insert release info into update server
         run: | 
-          sed 's/<updates>/<updates>\n${{ steps.get_version.outputs.VERSION }}/' mod_customfields-updates.xml
+          sed 's/<updates>/<updates>\nTEST123321/' mod_customfields-updates.xml
 
       # Push changes to the update server
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
@@ -44,7 +44,7 @@ jobs:
           git config --global user.email 'bubi-luka@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git checkout "${GITHUB_REF:11}"
-          git commit -am 'Automated commit to update server for release ${{ steps.get_version.outputs.VERSION }}'
+          git commit -am 'Automated commit to update server for release'
           git push
 
 #      # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
