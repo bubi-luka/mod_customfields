@@ -35,7 +35,7 @@ jobs:
       # Create new update version of the update server
       - name: Insert release info into update server
         run: | 
-          sed 's/<updates>/<updates>\nTEST123' mod_customfields-updates.xml
+          sed 's/<updates>/<updates>\nTEST123/' mod_customfields-updates.xml
 
       # Push changes to the update server
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
