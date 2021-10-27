@@ -46,12 +46,12 @@ jobs:
           sed -i 's/<updates>/<updates>\n\t\t<tags>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<\/downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t\t<\/downloadurl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-          sed -i 's/<updates>/<updates>\n\t\t\t\thttps:\/\/github.com\/bubi-luka\/mod-custom-fields\/archive\/mod_customfields-\${{ steps.get_version.outputs.VERSION }}.zip/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+          sed -i 's/<updates>/<updates>\n\t\t\t\thttps:\/\/github.com\/bubi-luka\/mod-custom-fields\/archive\/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t\t<downloadurl type=\"full\" format=\"zip\">/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<infourl title=\"Custom Field Module\" \/>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<client>0<\/client>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-          sed -i 's/<updates>/<updates>\n\t\t<version>\${{ steps.get_version.outputs.VERSION }}<\/version>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+          sed -i 's/<updates>/<updates>\n\t\t<version>${{ steps.get_version.outputs.VERSION }}<\/version>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<type>module<\/type>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<element>mod_customfields<\/element>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
           sed -i 's/<updates>/<updates>\n\t\t<\/description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
@@ -66,7 +66,7 @@ jobs:
           git config --global user.name 'Luka Oman'
           git config --global user.email 'bubi-luka@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout "${GITHUB_REF:11}"
+          git checkout "v${GITHUB_REF:11}"
           git commit -am 'Automated commit to update server for release ${{ steps.get_version.outputs.VERSION }}'
           git push
 
