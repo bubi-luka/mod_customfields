@@ -26,6 +26,8 @@ jobs:
       # Check out the code
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
       # Get the tag name
       - name: Get the version
