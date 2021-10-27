@@ -32,29 +32,46 @@ jobs:
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-  
-      # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
-      - name: Create a temporary artifact downloads folder
-        run: mkdir zips
-        
-      - name: Create zip archive
-        run: zip -r zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
-
-			- name: Create tar.gz archive
-				run: tar -czf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.gz Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
-				        
-      - name: Create tar.bz2 archive
-        run: tar cjf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.bz2  Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
-        
-      # Create the new release
-      - name: Create Release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          title: "Release ${{ steps.get_version.outputs.VERSION }}"
-          prerelease: true
+  		
+  		# Create new update version of the update server
+  		- name: Insert release info into update server
+  			run: | 
+  				sed 's/<updates>/<updates>\n\t<\/updates>/' mod_customfields-updates.xml
+  				sed 's/<updates>/<updates>\n\t\t<\/data>/' mod_customfields-updates.xml
+  				sed 's/<updates>/<updates>\n\t\t\t${{ steps.get_version.outputs.VERSION }}' mod_customfields-updates.xml
+  				sed 's/<updates>/<updates>\n\t\t<data>/' mod_customfields-updates.xml
+  				sed 's/<updates>/<updates>\n\t<updates>/' mod_customfields-updates.xml
+  		
+  		# Push changes to the update server
+  		- name: Automatic commit report for ${{ steps.get_version.outputs.VERSION }}
+        run: |
+          git config --global user.name 'Luka Oman'
+          git config --global user.email 'bubi-luka@users.noreply.github.com'
+          git commit -am "Automated report for release ${{ steps.get_version.outputs.VERSION }}"
+          git push
+       
+#      # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
+#      - name: Create a temporary artifact downloads folder
+#        run: mkdir zips
+#      
+#      - name: Create zip archive
+#        run: zip -r zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+#			
+#			- name: Create tar.gz archive
+#				run: tar -czf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.gz Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+#			
+#      - name: Create tar.bz2 archive
+#        run: tar cjf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.bz2  Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+#      
+#      # Create the new release
+#      - name: Create Release
+#        uses: "marvinpinto/action-automatic-releases@latest"
+#        with:
+#          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#          title: "Release ${{ steps.get_version.outputs.VERSION }}"
+#          prerelease: true
 #          prerelease: false
-          files: | 
-          	zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip
-          	zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.gz
-          	zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.bz2 
+#      		 files: | 
+#            zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip
+#            zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.gz
+#            zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.bz2 
