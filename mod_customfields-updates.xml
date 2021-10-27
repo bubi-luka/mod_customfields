@@ -1,4 +1,7 @@
 <updates>
+		<maintainerurl>https://luka.bubi.si/</maintainerurl>
+		<targetplatform name="joomla" version="[4].[0123456789]" />
+	</update>
     <update>
         <name>Custom Field Module</name>
         <description></description>
