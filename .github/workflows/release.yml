@@ -37,28 +37,28 @@ jobs:
       # Create new update version of the update server
       - name: Insert release info into update server
         run: | 
-          sed -i 's/<updates>/<updates>\n\t<\/update>/g' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<targetplatform name=\"joomla\" version=\"[4].[0123456789]\" \/>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<maintainerurl>https:\/\/luka.bubi.si\/<\/maintainerurl>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<maintainer>Luka Oman<\/maintainer>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<\/tags>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t\t<tag>stable<\/tag>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<tags>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<\/downloads>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t\t<\/downloadurl>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t\t\thttps:\/\/github.com\/bubi-luka\/mod-custom-fields\/archive\/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t\t<downloadurl type=\"full\" format=\"zip\">/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<downloads>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<infourl title=\"Custom Field Module\" \/>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<client>0<\/client>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<version>${{ steps.get_version.outputs.VERSION }}<\/version>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<type>module<\/type>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<element>mod_customfields<\/element>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<\/description>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t\tOpis/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<description>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t\t<name>Custom Field Module<\/name>/' mod_customfields-updates.xml > mod_customfields-updates.xml
-#          sed 's/<updates>/<updates>\n\t<update>/' mod_customfields-updates.xml > mod_customfields-updates.xml
+          sed -i 's/<updates>/<updates>\n\t<\/update>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+          sed -i 's/<updates>/<updates>\n\t\t<targetplatform name=\"joomla\" version=\"[4].[0123456789]\" \/>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+          sed -i 's/<updates>/<updates>\n\t\t<maintainerurl>https:\/\/luka.bubi.si\/<\/maintainerurl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<maintainer>Luka Oman<\/maintainer>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<\/tags>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t\t<tag>stable<\/tag>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<tags>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<\/downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t\t<\/downloadurl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t\t\thttps:\/\/github.com\/bubi-luka\/mod-custom-fields\/archive\/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t\t<downloadurl type=\"full\" format=\"zip\">/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<infourl title=\"Custom Field Module\" \/>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<client>0<\/client>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<version>${{ steps.get_version.outputs.VERSION }}<\/version>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<type>module<\/type>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<element>mod_customfields<\/element>/g' mod_customfields-updates.xml > mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<\/description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t\tOpis/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t\t<name>Custom Field Module<\/name>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+#          sed -i 's/<updates>/<updates>\n\t<update>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
 
       # Push changes to the update server
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
