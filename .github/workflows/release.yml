@@ -63,7 +63,7 @@ jobs:
       # Push changes to the update server
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
         run: |
-          echo ${GITHUB_REF:11}
+          echo ${GITHUB_REF}
           git config --global user.name 'Luka Oman'
           git config --global user.email 'bubi-luka@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
