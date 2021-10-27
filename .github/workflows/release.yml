@@ -37,7 +37,7 @@ jobs:
       # Create new update version of the update server
       - name: Insert release info into update server
         run: | 
-          sed 's/<updates>/<updates>\n\t<\/update>/' mod_customfields-updates.xml > mod_customfields-updates.xml
+          sed -i 's/<updates>/<updates>\n\t<\/update>/g' mod_customfields-updates.xml > mod_customfields-updates.xml
 #          sed 's/<updates>/<updates>\n\t\t<targetplatform name=\"joomla\" version=\"[4].[0123456789]\" \/>/' mod_customfields-updates.xml > mod_customfields-updates.xml
 #          sed 's/<updates>/<updates>\n\t\t<maintainerurl>https:\/\/luka.bubi.si\/<\/maintainerurl>/' mod_customfields-updates.xml > mod_customfields-updates.xml
 #          sed 's/<updates>/<updates>\n\t\t<maintainer>Luka Oman<\/maintainer>/' mod_customfields-updates.xml > mod_customfields-updates.xml
