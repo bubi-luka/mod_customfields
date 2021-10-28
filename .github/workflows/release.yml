@@ -62,8 +62,11 @@ jobs:
       
       # Push changes to the update server
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
-      - uses: actions/checkout@v2
-      - run: |
+        uses: actions/checkout@v2
+      
+      # Test
+      - name: Test
+        run: |
           git config --global user.name 'Luka Oman'
           git config --global user.email 'bubi-luka@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
