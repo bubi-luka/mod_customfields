@@ -64,15 +64,15 @@ jobs:
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
         uses: actions/checkout@v2
       
-      # Test
-      - name: Test
-        run: |
-          git config --global user.name 'Luka Oman'
-          git config --global user.email 'bubi-luka@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout "${GITHUB_REF:10}"
-          git commit -am 'Automated commit to update server for release ${{ steps.get_version.outputs.VERSION }}'
-          git push
+#      # Test
+#      - name: Test
+#        run: |
+#          git config --global user.name 'Luka Oman'
+#          git config --global user.email 'bubi-luka@users.noreply.github.com'
+#          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+#          git checkout "${GITHUB_REF:10}"
+#          git commit -am 'Automated commit to update server for release ${{ steps.get_version.outputs.VERSION }}'
+#          git push
 
 #      # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
 #      - name: Create a temporary artifact downloads folder
