@@ -23,11 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Check out the code
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+#      # Check out the code
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+##        with:
+##          ref: ${{ github.head_ref }}
 
       # Get the tag name
       - name: Get the version
@@ -62,7 +62,8 @@ jobs:
       
       # Push changes to the update server
       - name: Automatic commit to update server for ${{ steps.get_version.outputs.VERSION }}
-        run: |
+      - uses: actions/checkout@v2
+      - run: |
           git config --global user.name 'Luka Oman'
           git config --global user.email 'bubi-luka@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
