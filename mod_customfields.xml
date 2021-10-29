@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension 
-	type="module"
-	client="site"
-	version="4.0"
-	method="upgrade">
+<extension type="module" client="site" method="upgrade">
 	
 	<name>Custom Fields Module</name>
-	<version>0.6.0-dev</version>
+	<version>0.5.5</version>
 	<creationDate>October 2021</creationDate>
 	<description>A module that will display content of selected custom fields of the displayed article.</description>
 	<namespace>Joomla\Module\CustomFields</namespace>
@@ -33,10 +29,10 @@
 		<filename>README.md</filename>
 	</files>
 
-	<!-- Update script -->
-<!--	<updateservers>
-		<server type="extension" priority="1" name="mod_jbcookies">http://www.joomball.com/images/updates/jbcookies.xml</server>
-	</updateservers> -->
+	<!-- Updates -->
+	<updateservers>
+		<server type="extension" name="Custom Fields Module" priority="1">https://raw.githubusercontent.com/bubi-luka/mod-custom-fields/master/mod_customfields-updates.xml</server>
+	</updateservers>
 
 	<!-- Configuration files, form fields, back end -->
 	<config>
