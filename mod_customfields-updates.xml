@@ -22,7 +22,7 @@
 	<update>
 		<name>Custom Fields Everywhere</name>
 		<description>Display custom fields of an Joomla article in a module.</description>
-		<element>mod_customfields/element>
+		<element>mod_customfields</element>
 		<type>module</type>
 		<version>0.5.0</version>
 		<client>0</client>
