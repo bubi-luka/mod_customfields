@@ -31,7 +31,7 @@
 
 	<!-- Updates -->
 	<updateservers>
-		<server type="extension" name="Custom Fields Module" priority="1">https://raw.githubusercontent.com/bubi-luka/mod_customfields/master/mod_customfields-updates.xml</server>
+		<server type="extension" name="Custom Fields Everywhere" priority="1">https://raw.githubusercontent.com/bubi-luka/mod_customfields/master/mod_customfields-updates.xml</server>
 	</updateservers>
 
 	<!-- Configuration files, form fields, back end -->
