@@ -1,7 +1,16 @@
 <?php
 /**
- * @package			Joomla.Site
- * @subpackage		Modules - mod_custom_fields
+ * Custom Fields Everywhere
+ * 
+ * @package    Module Custom Fields
+ * @subpackage Module
+ * @license    GNU General Public License version 3; see LICENSE.txt
+ * @link       https://github.com/bubi-luka/mod-custom-fields
+ * Custom Fields Everywhere (mod_customfields) is free software. This 
+ * version may have been modified pursuant to the GNU General 
+ * Public License, and as distributed it includes or is derivative 
+ * of works licensed under the GNU General Public License or other 
+ * free or open source software licenses.
  */
 
 defined('_JEXEC') or die;

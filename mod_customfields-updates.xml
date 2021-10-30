@@ -1,8 +1,8 @@
 <updates>
 	<update>
-		<name>Custom Field Module</name>
+		<name>Custom Fields Everywhere</name>
 		<description>Display custom fields of an Joomla article in a module.</description>
-		<element>mod_customfields/element>
+		<element>mod_customfields</element>
 		<type>module</type>
 		<version>0.5.5</version>
 		<client>0</client>
@@ -20,7 +20,7 @@
 		<targetplatform name="joomla" version="4" />
 	</update>
 	<update>
-		<name>Custom Field Module</name>
+		<name>Custom Fields Everywhere</name>
 		<description>Display custom fields of an Joomla article in a module.</description>
 		<element>mod_customfields/element>
 		<type>module</type>
