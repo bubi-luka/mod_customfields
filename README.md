@@ -1,4 +1,4 @@
-# Custom Fields Module
+# Custom Fields Everywhere
 **Display custom fields of an Joomla article in a module.**
 
 ## Description
@@ -16,18 +16,23 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 **Warning: _If there is no field with the given id, the shortcode will be displayed unchanged!_**
 
 ## Roadmap
-### 0.6.*
+### 0.7.*
 - modal field has the option to use both the label and the data for custom fields,
 - editor field has modified shortcode to contain option to display the label or not,
 - module can parse the new shortcode and display label or not.
 
-### 0.7.*
+### 0.8.*
 - module conforts with user levels and on the frontend displays only the levels that are visible to this user <= might already be included with the Joomla! system
 
 ### 1.0.0
 - final release, nothing new
 ---
 ## Change Log
+### 0.6.0
+- feature: create automatic upgrade mechanisem for upgrading the extension with Joomla!
+- ci: add workflows for easier release management
+- fix: changes to comply with JED extensions checker
+- fix: modal windows again active on J!4
 ### 0.5.5
 - fix: when an article does not contain content for the requested field the script does no longer try to parse that field, fail and output error in nginx
 - erase joomla extension version parameter from mod_customfields.xml meta (comp. with Joomla!4)

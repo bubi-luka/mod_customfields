@@ -2,8 +2,8 @@
 <extension type="module" client="site" method="upgrade">
 	
 	<name>Custom Fields Everywhere</name>
-	<version>0.5.5</version>
-	<creationDate>October 2021</creationDate>
+	<version>0.6.0</version>
+	<creationDate>November 2021</creationDate>
 	<description>A module that will display content of selected custom fields of the displayed article.</description>
 	<namespace>Joomla\Module\CustomFields</namespace>
 	
