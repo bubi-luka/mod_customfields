@@ -28,6 +28,8 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 - final release, nothing new
 ---
 ## Change Log
+### 0.6.1
+- ci fix: fix for workflow -> create release
 ### 0.6.0
 - feature: create automatic upgrade mechanisem for upgrading the extension with Joomla!
 - ci: add workflows for easier release management
