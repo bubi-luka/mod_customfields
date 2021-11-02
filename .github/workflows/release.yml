@@ -70,13 +70,13 @@ jobs:
         run: mkdir zips
       
       - name: Create zip archive
-        run: zip -r zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+        run: zip -r zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.zip Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
       
       - name: Create tar.gz archive
-        run: tar -czf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.gz Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+        run: tar -czf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.gz Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
       
       - name: Create tar.bz2 archive
-        run: tar cjf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.bz2  Helper/ fields/ language/ tmpl/ LICENCE.txt README.md index.html mod_customfields.php mod_customfields.xml
+        run: tar cjf zips/mod_customfields-${{ steps.get_version.outputs.VERSION }}.tar.bz2  Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
       
       # Create the new release
       - name: Create Release
