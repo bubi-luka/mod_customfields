@@ -54,7 +54,7 @@
 					name="buttonInsertShortcode"
 					type="cfbutton"
 					label="Insert shortcode with a click"
-					path="../modules/mod_customfields/"
+					path="../modules/mod_customfields/fields/"
 					xml="mod_customfields.xml"
 					extension_name="mod_customfields" />
 			

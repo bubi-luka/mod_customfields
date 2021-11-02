@@ -28,7 +28,7 @@ class JFormFieldCfmessage extends JFormField {
     			$html = array();
        			$html[] = '<div class="alert alert-info">';
 				$html[] = '<p>The shortcode is constructed as "{field ID}. The ID is the number, id of the custom field that we want to show.</p>';
-				$html[] = '<p>You can find the id of teh custom field in the <em>Administration menu</em> => <em>Content</em> => <em>Fields</em> => <em>Last column in the table</em>.</p>';
+				$html[] = '<p>You can find the id of the custom field in the <em>Administration menu</em> => <em>Content</em> => <em>Fields</em> => <em>Last column in the table</em>.</p>';
 				$html[] = '</div>';
 				return implode('', $html);;
     			break;

@@ -15,6 +15,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 class JFormFieldCfbutton extends JFormField {
 
 	protected $type = 'cfbutton';
@@ -24,7 +26,7 @@ class JFormFieldCfbutton extends JFormField {
     	$html = array();
 		$html[] = '<div>';
 
-		$html[] = '<a href="#modal-customFields" class="btn btn-warning" data-toggle="modal">Click to add a custom field</a>';
+		$html[] = '<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-customFields" onclick="return false;">Click to add custom fields</button>';
 		
 		$params = array();
 		$params['title']  = "Add a shortcode of the desired custom field";
@@ -37,15 +39,12 @@ class JFormFieldCfbutton extends JFormField {
 		$windowCode[] = 'jQuery("#modal-customFields").modal("hide");';
 		$windowCode[] = '}</script>';
 
-		$windowCode[] = '<table class="table">';
-		$windowCode[] = '<thead>';
-		$windowCode[] = '<tr>';
-		$windowCode[] = '<th width="10%" class="nowrap center">Field ID</th>';
-		$windowCode[] = '<th class="title">Field Name</th>';
-		$windowCode[] = '<th width="20%" class="nowrap hidden-phone">Field Group</th>';
-		$windowCode[] = '<th width="10%" class="nowrap hidden-phone">Field Type</th>';
-		$windowCode[] = '</tr>';
-		$windowCode[] = '</thead>';
+		$windowCode[] = '<div class="row">';
+		$windowCode[] = '<div class="col-1 nowrap center">Field ID</div>';
+		$windowCode[] = '<div class="col">Field Name</div>';
+#		$windowCode[] = '<th width="20%" class="nowrap d-none d-md-block">Field Group</th>';
+#		$windowCode[] = '<th width="10%" class="nowrap d-none d-md-block">Field Type</th>';
+		$windowCode[] = '</div>';
 
 		// Obtain a database connection
 		$db = JFactory::getDbo();
@@ -80,23 +79,22 @@ class JFormFieldCfbutton extends JFormField {
 		}
 		
 		foreach( $resultFields as $row ) {			
-			$windowCode[] = '<tr>';
-			$windowCode[] = '<td class="center">' . $row->id . '</td>';
-			$windowCode[] = '<td class="has-context"><a class="btn btn-small btn-block btn-success" href="javascript:void(0);" onclick="insertShortcode(' . $row->id . ');" data-dismiss="modal">' . $row->label . '</a></td>';
-			if ( $row->group_id != '0' ) {
-				$windowCode[] = '<td class="small hidden-phone"><span class="btn btn-small btn-block btn-warning" href="javascript:void(0);">' . $groups[$row->group_id] . '</span></td>';
-			}
-			else {
-				$windowCode[] = '<td class="small hidden-phone"></td>';
-			}
-			$windowCode[] = '<td class="small hidden-phone">'  . $row->type . '</td>';
-			$windowCode[] = '</tr>';
-		}		
+			$windowCode[] = '<div class="row">';
+			$windowCode[] = '<div class="col-1 center">' . $row->id . '</div>';
+			$windowCode[] = '<div class="col"><a href="javascript:void(0);" class="link-success" onclick="insertShortcode(' . $row->id . ');" data-dismiss="modal">' . $row->label . '</a></div>';
+#			if ( $row->group_id != '0' ) {
+#				$windowCode[] = '<td class="small hidden-phone"><span class="btn btn-small btn-block btn-warning" href="javascript:void(0);">' . $groups[$row->group_id] . '</span></td>';
+#			}
+#			else {
+#				$windowCode[] = '<td class="small hidden-phone"></td>';
+#			}
+#			$windowCode[] = '<td class="small hidden-phone">'  . $row->type . '</td>';
+			$windowCode[] = '</div>';
+		}
 		
-		$windowCode[] = '</table>';
-		
-		$html[] = JHTML::_("bootstrap.renderModal", "modal-customFields", $params, implode('', $windowCode));
+		$html[] = HTMLHelper::_('bootstrap.renderModal', 'modal-customFields', $params, implode('', $windowCode));
 		$html[] = '</div>';
+
 		return implode('', $html);
 
 	}
