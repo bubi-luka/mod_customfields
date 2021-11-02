@@ -1,5 +1,27 @@
 <updates>
 	<update>
+		<name>Custom Field Module</name>
+		<description>
+		Display custom fields of an Joomla article in a module.
+		</description>
+		<element>mod_customfields</element>
+		<type>module</type>
+		<version>v0.6.1</version>
+		<client>0</client>
+		<infourl title="Custom Field Module" />
+		<downloads>
+			<downloadurl type="full" format="zip">
+				https://github.com/bubi-luka/mod-custom-fields/releases/download/v0.6.1/mod_customfields-v0.6.1.zip
+			</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer>Luka Oman</maintainer>
+		<maintainerurl>https://luka.bubi.si/</maintainerurl>
+		<targetplatform name="joomla" version="4" />
+	</update>
+	<update>
 		<name>Custom Fields Everywhere</name>
 		<description>Display custom fields of an Joomla article in a module.</description>
 		<element>mod_customfields</element>
