@@ -25,7 +25,7 @@ $input = JFactory::getApplication()->input;
 $articleId = $input->getInt('id');
 
 // Get the article author ID
-$article =& JTable::getInstance('content');
+$article = JTable::getInstance('content');
 $article->load($articleId);
 $authorId = $article->created_by;
 
