@@ -134,6 +134,10 @@
 
 			// Check if field type is media - insert HTML image code
 			if ( $arrTypes[$fieldId] == "media" ) {
+				if ( strpos($strFieldValue, "joomlaImage") ) {
+					$strFieldValue = substr($strFieldValue, 14, strpos($strFieldValue, "joomlaImage") - 15);
+					$strFieldValue = str_replace("\/", "/", $strFieldValue);
+				}
 				$strFieldValue = "<img src='/" . $strFieldValue . "' alt='" . $strFieldName . "' />";
 			}
 			
