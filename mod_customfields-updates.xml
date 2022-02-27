@@ -4,6 +4,29 @@
 		<description>Display custom fields of an Joomla article in a module.</description>
 		<element>mod_customfields</element>
 		<type>module</type>
+		<version>0.7.0</version>
+		<client>site</client>
+		<infourl title="Custom Fields Everywhere">https://github.com/bubi-luka/mod_customfields/releases/tag/v0.7.0</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">
+				https://github.com/bubi-luka/mod-custom-fields/releases/download/v0.7.0/mod_customfields-v0.7.0.zip
+			</downloadurl>
+		</downloads>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<sha256>d35b4dee50d2217aaecc34ea040e2717d0c5347a39fb67b987efdb723577c404</sha256>
+		<sha384>96e46d9b5cc0bc2f0989fc4fb9fc5f0e6820032531256fd76a2ad862b6080bb9c593cfecedd1fb2748e36a5fd60891b8</sha384>
+		<sha512>77948ebe1b1f85cc45b992d45085ed0bf240647a3d62404069ce638f90d59ac77fe46d12680a1d2f9106191e3405aa15b60c44e68790439c7989a800cdabc5e8</sha512>
+		<maintainer>Luka Oman</maintainer>
+		<maintainerurl>https://luka.bubi.si/</maintainerurl>
+		<targetplatform name="joomla" version="4.*" />
+	</update>
+	<update>
+		<name>Custom Fields Everywhere</name>
+		<description>Display custom fields of an Joomla article in a module.</description>
+		<element>mod_customfields</element>
+		<type>module</type>
 		<version>0.6.1</version>
 		<client>site</client>
 		<infourl title="Custom Fields Everywhere">https://github.com/bubi-luka/mod_customfields/releases/tag/v0.6.1</infourl>
