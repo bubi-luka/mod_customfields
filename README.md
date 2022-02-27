@@ -16,11 +16,6 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 **Warning: _If there is no field with the given id, the shortcode will be displayed unchanged!_**
 
 ## Roadmap
-### 0.7
-- J!4 changes the way images are stored in custom field, we have to adopt the module
-- fix bugs that were introduced due to the changes in J!4
-- add images to wiki articles
-- update Github actions and fix errors in them
 ### 0.8
 - modal field has the option to use both the label and the data for custom fields,
 - editor field has modified shortcode to contain option to display the label or not,
@@ -33,21 +28,32 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 - final release, nothing new
 ---
 ## Change Log
+### 0.7.0
+- J!4 changes the way images are stored in custom field, we have to adopt the module
+- fix bugs that were introduced due to the changes in J!4
+- add images to wiki articles
+- update Github actions and fix errors in them
+- calculate sha256, sha384 and sha512 checksums for zip archive and add that data to the server update file
+
 ### 0.6.1
 - ci fix: fix for workflow -> create release
+
 ### 0.6.0
 - feature: create automatic upgrade mechanisem for upgrading the extension with Joomla!
 - ci: add workflows for easier release management
 - fix: changes to comply with JED extensions checker
 - fix: modal windows again active on J!4
+
 ### 0.5.5
 - fix: when an article does not contain content for the requested field the script does no longer try to parse that field, fail and output error in nginx
 - erase joomla extension version parameter from mod_customfields.xml meta (comp. with Joomla!4)
+
 ### 0.5.0
 - module has a backend modal field,
 - this modal field has the content of all the custom fields,
 - user can with a click on a button select desired custom field and put the shortcode in the editor field,
 - fields can display all the characters properly.
+
 ### 0.4.0
 - module displays the list of available custom fields in the backend
 
