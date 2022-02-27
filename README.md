@@ -16,12 +16,17 @@ Use the WYSIWYG editor to enter the content you would like to be displayed in th
 **Warning: _If there is no field with the given id, the shortcode will be displayed unchanged!_**
 
 ## Roadmap
-### 0.7.*
+### 0.7
+- J!4 changes the way images are stored in custom field, we have to adopt the module
+- fix bugs that were introduced due to the changes in J!4
+- add images to wiki articles
+- update Github actions and fix errors in them
+### 0.8
 - modal field has the option to use both the label and the data for custom fields,
 - editor field has modified shortcode to contain option to display the label or not,
 - module can parse the new shortcode and display label or not.
 
-### 0.8.*
+### 0.9
 - module conforts with user levels and on the frontend displays only the levels that are visible to this user <= might already be included with the Joomla! system
 
 ### 1.0.0
