@@ -3,96 +3,96 @@ name: Create new release
 
 # Controls when the workflow will run
 on:
-	# Triggers the workflow on push events on the master branch when there is new tag
-	push:
-		tags:
-			- 'v*' # Push events to matching v*, i.e. v1.0, v22.02.27
+    # Triggers the workflow on push events on the master branch when there is new tag
+    push:
+        tags:
+            - 'v*' # Push events to matching v*, i.e. v1.0, v22.02.27
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-	# This workflow contains a single job called "createrelease" with multiple steps
-	createrelease:
-		# Only activate build on event in master branch
-		if: github.event.base_ref == 'refs/heads/master'
+    # This workflow contains a single job called "createrelease" with multiple steps
+    createrelease:
+        # Only activate build on event in master branch
+        if: github.event.base_ref == 'refs/heads/master'
 
-		name: Create new release
-		# The type of runner that the job will run on
-		runs-on: ubuntu-latest
-		# Steps represent a sequence of tasks that will be executed as part of the job
-		steps:
-			# Check out the code
-			- name: Checkout code
-				uses: actions/checkout@v2
-				with:
-					fetch-depth: 0
+        name: Create new release
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            # Check out the code
+            - name: Checkout code
+              uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
 
-			# Get the tag and version name
-			- name: Get the tag and version name
-				id: get_info
-				run: | 
-						echo ::set-output name=TAG::${GITHUB_REF/refs\/tags\//}
-						echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
-						echo ::set-output name=DATE::$(date +'%B %Y')"
+            # Get the tag and version name
+            - name: Get the tag and version name
+              id: get_info
+              run: | 
+                  echo ::set-output name=TAG::${GITHUB_REF/refs\/tags\//}
+                  echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+                  echo ::set-output name=DATE::$(date +'%B %Y')
 
-			# Create new update version of the update server
-			- name: Insert release info into update server
-				run: | 
-					sed -i 's/<updates>/<updates>\n\t<\/update>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<targetplatform name=\"joomla\" version=\"4.\*\" \/>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<maintainerurl>https:\/\/luka.bubi.si\/<\/maintainerurl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<maintainer>Luka Oman<\/maintainer>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<\/tags>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t\t<tag>stable<\/tag>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<tags>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<\/downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t\t<\/downloadurl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t\t\thttps:\/\/github.com\/bubi-luka\/mod-custom-fields\/releases\/download\/${{ steps.get_info.outputs.TAG }}\/mod_customfields-${{ steps.get_info.outputs.TAG }}.zip/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t\t<downloadurl type=\"full\" format=\"zip\">/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<infourl title=\"Custom Fields Everywhere\">https:\/\/github.com\/bubi-luka\/mod_customfields\/releases\/tag\/${{ steps.get_info.outputs.TAG }}<\/infourl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<client>site<\/client>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<version>${{ steps.get_info.outputs.VERSION }}<\/version>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<type>module<\/type>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<element>mod_customfields<\/element>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<description>Display custom fields of an Joomla article in a module.<\/description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t\t<name>Custom Fields Everywhere<\/name>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
-					sed -i 's/<updates>/<updates>\n\t<update>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+            # Create new update version of the update server
+            - name: Insert release info into update server
+              run: | 
+                  sed -i 's/<updates>/<updates>\n\t<\/update>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<targetplatform name=\"joomla\" version=\"4.\*\" \/>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<maintainerurl>https:\/\/luka.bubi.si\/<\/maintainerurl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<maintainer>Luka Oman<\/maintainer>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<\/tags>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t\t<tag>stable<\/tag>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<tags>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<\/downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t\t<\/downloadurl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t\t\thttps:\/\/github.com\/bubi-luka\/mod-custom-fields\/releases\/download\/${{ steps.get_info.outputs.TAG }}\/mod_customfields-${{ steps.get_info.outputs.TAG }}.zip/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t\t<downloadurl type=\"full\" format=\"zip\">/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<downloads>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<infourl title=\"Custom Fields Everywhere\">https:\/\/github.com\/bubi-luka\/mod_customfields\/releases\/tag\/${{ steps.get_info.outputs.TAG }}<\/infourl>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<client>site<\/client>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<version>${{ steps.get_info.outputs.VERSION }}<\/version>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<type>module<\/type>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<element>mod_customfields<\/element>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<description>Display custom fields of an Joomla article in a module.<\/description>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t\t<name>Custom Fields Everywhere<\/name>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
+                  sed -i 's/<updates>/<updates>\n\t<update>/g' mod_customfields-updates.xml >> mod_customfields-updates.xml
 
-			# Update the module info file with new version number and release month/year
-			- name: Insert release info into update server
-				run: | 
-					sed -i 's/<version>.*<\/version>/<version>${{ steps.get_info.outputs.VERSION }}<\/version>/g' mod_customfields.xml >> mod_customfields.xml
-					sed -i 's/<creationDate>.*<\/creationDate>/<creationDate>${{ steps.get_info.outputs.DATE }}<\/creationDate>/g' mod_customfields.xml >> mod_customfields.xml
+            # Update the module info file with new version number and release month/year
+            - name: Insert release info into update server
+              run: | 
+                  sed -i 's/<version>.*<\/version>/<version>${{ steps.get_info.outputs.VERSION }}<\/version>/g' mod_customfields.xml >> mod_customfields.xml
+                  sed -i 's/<creationDate>.*<\/creationDate>/<creationDate>${{ steps.get_info.outputs.DATE }}<\/creationDate>/g' mod_customfields.xml >> mod_customfields.xml
 
-			# Push changes to the update server
-			- name: Automatic commit to update server for ${{ steps.get_info.outputs.VERSION }}
-				uses: devops-infra/action-commit-push@v0.3
-				with:
-					github_token: ${{ secrets.GITHUB_TOKEN }}
-					commit_message: Automated commit to update server for release ${{ steps.get_info.outputs.VERSION }}
-					target_branch: master
+            # Push changes to the update server
+            - name: Automatic commit to update server for ${{ steps.get_info.outputs.VERSION }}
+              uses: devops-infra/action-commit-push@v0.3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  commit_message: Automated commit to update server for release ${{ steps.get_info.outputs.VERSION }}
+                  target_branch: master
 
-			# Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
-			- name: Create a temporary artifact downloads folder
-				run: mkdir zips
-			
-			- name: Create zip archive
-				run: zip -r zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.zip Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
-			
-			- name: Create tar.gz archive
-				run: tar -czf zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.tar.gz Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
-			
-			- name: Create tar.bz2 archive
-				run: tar cjf zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.tar.bz2	Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
+            # Create a zip, tar.gz and tar.bz2 archive of all the necessary files and put them online
+            - name: Create a temporary artifact downloads folder
+              run: mkdir zips
+            
+            - name: Create zip archive
+              run: zip -r zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.zip Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
+            
+            - name: Create tar.gz archive
+              run: tar -czf zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.tar.gz Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
+            
+            - name: Create tar.bz2 archive
+              run: tar cjf zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.tar.bz2 Helper/ fields/ language/ tmpl/ LICENSE.txt README.md index.html mod_customfields.php mod_customfields.xml
 
-			# Create the new release
-			- name: Create Release
-				uses: "marvinpinto/action-automatic-releases@latest"
-				with:
-					repo_token: "${{ secrets.GITHUB_TOKEN }}"
-					title: "Release ${{ steps.get_info.outputs.TAG }}"
-					prerelease: false
-					files: | 
-						zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.zip
-						zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.tar.gz
-						zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.tar.bz2
+            # Create the new release
+            - name: Create Release
+              uses: "marvinpinto/action-automatic-releases@latest"
+              with:
+                  repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                  title: "Release ${{ steps.get_info.outputs.TAG }}"
+                  prerelease: false
+                  files: | 
+                      zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.zip
+                      zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.tar.gz
+                      zips/mod_customfields-${{ steps.get_info.outputs.TAG }}.tar.bz2
